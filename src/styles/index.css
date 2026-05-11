@@ -1,11 +1,11 @@
-/* 
+.wrapper{
 
-    You can write your own styles here...
+    width: 30rem;
     
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
 
-*/
+}
+
+.my-input {
+    width: 100%;
+    box-sizing: border-box;
+}
