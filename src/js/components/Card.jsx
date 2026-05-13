@@ -1,19 +1,16 @@
 const Card = ({ name, handleDelete }) => {
-    
 
-return(
+
+    return (
         <div className="card">
 
             <ul>
-
-            <p>
-                {name} <span
-                className="btn btn-danger"
-                onClick={()=> handleDelete(name)}
-                > x </span>
-
-            </p>
-
+                <p>
+                    {name} <span
+                        className="btn btn-danger"
+                        onClick={() => handleDelete(name)}
+                    > x </span>
+                </p>
             </ul>
         </div>
     )

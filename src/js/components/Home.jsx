@@ -30,10 +30,8 @@ const Home = () => {
 
 
 	const handleChange = e => {
-
 		SetNewUser(e.target.value)
 	}
-
 	const handelSubmit = e => {
 
 		e.preventDefault()
@@ -46,84 +44,62 @@ const Home = () => {
 			},
 			body: JSON.stringify({})
 		})
-
 			.then(resp => {
 				if (!resp.ok) throw new Error('error en el pedido')
 				return resp.json()
 			})
-
 			.then(data => {
 				console.log(data)
 				setUsers([...users, data])
 				SetNewUser('')
 			})
-
 			.catch(err => console.log(err))
 	}
 
 
 	const deleteUser = (username) => {
-
 		fetch('https://playground.4geeks.com/todo/users/' + username, {
-
 			method: "DELETE"
-
 		})
-
 			.then(resp => {
-
 				if (!resp.ok) throw new Error('error al borrar')
-
 				const filteredUsers = users.filter(el => el.name !== username)
-
 				setUsers(filteredUsers)
-
 			})
-
 			.catch(err => console.log(err))
-
 	}
 
 	return (
-
-		<div className=" container bg-primary">
+		<div className="container-fluid  d-flex justify-content-center align-items-center mt-5">
 			<div className="col-12 col-md-10 col-lg-6">
 
 				<h1> List of Users</h1>
 
 				<div className="list-group">
+					<form className="form-control " onSubmit={handelSubmit}>
+						<input className="list-group-item my-input" type="text" value={newUser} onChange={handleChange} placeholder="add a new user" />
+						<input type="submit" hidden />
+					</form>
+				</div>
 
-				<form className="form-control " onSubmit={handelSubmit}>
-					<input className="list-group-item my-input" type="text" value={newUser} onChange={handleChange} placeholder="add a new user" />
-					<input type="submit" hidden />
-				</form>
-
-				</div>  
-	
 				{users && users.map(el => (
 
 					<div key={el.id}>
-
-						<div className="bg-danger"
-							onClick={() =>
-								setOpenUser(openUser === el.name ? null : el.name)
-							}
+						<div onClick={() =>
+							setOpenUser(openUser === el.name ? null : el.name)
+						}
 							style={{ cursor: "pointer", fontWeight: "bold" }}
 						>
-
 							<ul className="list-group">
-								<li className="list-group-item d-flex justify-content-between">
+								<li className="list-group-item d-flex justify-content-between list-group-item-action list-group-item-secondary ">
 									{el.name}
 									<i className="fa-solid fa-xmark " onClick={() => deleteUser(el.name)}></i>
 								</li>
 							</ul>
-
 						</div>
-
 						{openUser === el.name && (
 							<UserTask username={el.name} />
 						)}
-
 					</div>
 
 				))}

@@ -1,11 +1,28 @@
 .wrapper{
-
-    width: 30rem;
-    
-
+    width: 30rem;  
 }
 
 .my-input {
     width: 100%;
     box-sizing: border-box;
+}
+
+.delete-icon {
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.task-item:hover .delete-icon {
+    opacity: 1;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1{
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
